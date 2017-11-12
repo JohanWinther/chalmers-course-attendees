@@ -7,7 +7,7 @@ Public API for lookup of course attendees at Chalmers
 
 * **URL**
 
-  /?course=id&term=axx
+  `/<Course code>/<term>/<extra>`
 
 * **Method:**
 
@@ -17,9 +17,13 @@ Public API for lookup of course attendees at Chalmers
 
    **Required:**
 
-   `id=abcxxx` (Course code)
+   `Course code` - Case insensitive course code in format *abcxxx*
 
-   `axx=v|hxx` (v = spring, h = autumn, xx = year)
+   `term` - Study term in format *aYY* where *a* can be `v` (spring) or `h` (autumn) and *YY* is the year
+
+   **Optional**
+
+   `extra` - Set to `noarchive` to list users from that year that are still registered
 
 * **Data Params**
 
@@ -54,20 +58,20 @@ Public API for lookup of course attendees at Chalmers
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** none <br />
+    **Content:** `Course or term not found.` <br />
     **Explanation:** The course and year combination was not found.
 
   OR
 
   * **Code:** 403 Forbidden <br />
-    **Content:** none <br />
-    **Explanation:** Could not bind to the directory anonymously. This should normally work.
+    **Content:** `Could not bind to directory.` <br />
+    **Explanation:** Could not bind to the directory anonymously. This should normally work, but the server could have changed permissions.
 
 * **Sample Call:**
 
   ```javascript
     $.ajax({
-      url: "/?course=tma970&term=h17",
+      url: "/tma970/h17",
       dataType: "json",
       type : "GET",
       success : function(r) {

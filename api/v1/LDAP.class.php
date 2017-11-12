@@ -7,7 +7,7 @@ class AttendeeList
 	var $attendees; // Number of attendees
 	var $error = 0;
 
-	function __construct($course, $term, $noarchive)
+	function __construct($course, $term, $noarchive = false)
 	{
 		// Create new connection if none is already set
 		if (!self::$ds) self::$ds = ldap_connect("ldap.chalmers.se");
