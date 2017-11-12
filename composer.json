@@ -1,0 +1,11 @@
+{
+    "name": "johanwinther/chalmers-course-attendees",
+    "description": "Public API for lookup of course attendees at Chalmers.",
+    "type": "library",
+    "require": {
+        "ext-ldap": "*",
+        "php": "~7.0"
+    },
+    "license": "MIT",
+    "minimum-stability": "stable"
+}
