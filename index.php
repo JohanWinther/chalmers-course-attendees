@@ -1,4 +1,3 @@
 <?php
-header("Location: https://github.com/JohanWinther/chalmers-course-attendees"); /* Redirect browser */
-exit();
+include_once('index.html');
 ?>

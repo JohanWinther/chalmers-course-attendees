@@ -7,7 +7,7 @@ Public API for lookup of course attendees at Chalmers
 
 * **URL**
 
-  `/<Course code>/<term>/<extra>`
+  `/api/v1/<Course code>/<term>/<extra>`
 
 * **Method:**
 

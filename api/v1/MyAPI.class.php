@@ -14,8 +14,10 @@ class MyAPI extends API
         $term = strtolower($this->args[1]);
         if (isset($this->args[2])) {
             $noarchive = ($this->args[2]=="noarchive")? true: false;
+        } else {
+            $noarchive = false;
         }
-        
+
         require_once('LDAP.class.php');
         // Create list
         $attendeeList = new AttendeeList($course, $term, $noarchive);
