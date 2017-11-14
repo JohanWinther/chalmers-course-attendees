@@ -23,6 +23,8 @@ class MyAPI extends API
         $attendeeList = new AttendeeList($course, $term, $noarchive);
         if ($attendeeList->error == 0) { // Everything OK
             unset($attendeeList->error); // Remove error variable before returning
+            setlocale(LC_COLLATE, "sv_SV");
+            usort($attendeeList->list, "localeCompare");
             return array("data"=>$attendeeList,"status"=>200); // Return as JSON object
         } elseif ($attendeeList->error == 1) {
             return array("data"=>"Could not bind to directory.", "status"=>403); // HTTP code 403 Forbidden (could not bind anonymously)

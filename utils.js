@@ -1,4 +1,5 @@
 var clipboard = new Clipboard('#copy');
+var tableData;
 
 function toggleButtons(enable) {
     if (enable) {
@@ -28,6 +29,13 @@ function updateTable($table, data) {
         }).join("\n");
         $("a#download").attr("href","data:text/csv;charset=utf-8," + encodeURIComponent(headerSemiColon + csvContent));
         toggleButtons(1);
+        var $th = $table.find("th.sorttable_sorted ,th.sorttable_sorted_reverse");
+        if ($th[0] != undefined) {
+            $th.removeClass("sorttable_sorted");
+            $th.removeClass("sorttable_sorted_reverse");
+            $th.find("span").remove();
+        }
+        sorttable.innerSortFunction.apply($("th")[0], []);
     } else {
         $table.find("tbody").html("");
         $("#copy").removeAttr("data-clipboard-text");
@@ -63,11 +71,13 @@ $('form').submit(function() {
         type: "GET",
         url: "/api/v1/attendees/" + $course + "/" + $term + noarchive,
         success: function(data) {
+            tableData = data.list;
             updateTable($("table#attendees"), data);
             $("button#search").text("Search");
             $("button#search").removeAttr("disabled");
         },
         error: function(data) {
+            tableData = [];
             updateTable($("table#attendees"), {"list":[]});
             $("button#search").text("Search");
             $("button#search").removeAttr("disabled");

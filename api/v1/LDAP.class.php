@@ -85,4 +85,9 @@ function createAttendee($cid) {
 	return new Attendee($cid, AttendeeList::$ds);
 }
 
+
+ function localeCompare($a, $b) {
+     return strcoll($a->cid,$b->cid);
+ }
+
 ?>
