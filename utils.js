@@ -53,7 +53,7 @@ $('form').submit(function() {
     var $course = $(this).find("input").eq(0);
     var $term = $(this).find("input").eq(1);
     var noarchive = "";
-    if ($(this).find("input").eq(2).val()=="off") { noarchive = "/noarchive"; }
+    if (!$("input#noarchive")[0].checked) { noarchive = "/noarchive"; }
     if ($course.val() == "") {
         $course.focus();
         $course = $course.attr("placeholder");
@@ -86,4 +86,8 @@ $('form').submit(function() {
     });
 
     return false;
+});
+
+$(document).ready(function() {
+    $("input#course").focus();
 });
