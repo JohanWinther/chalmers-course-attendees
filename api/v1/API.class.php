@@ -37,6 +37,11 @@ abstract class API
 
     private function _response($data, $status) {
         header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Credentials: true");
+        header("Access-Control-Max-Age: 60");
+        header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
+        header("Access-Control-Allow-Methods: GET");
         return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
