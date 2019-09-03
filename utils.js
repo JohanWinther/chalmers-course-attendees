@@ -89,5 +89,6 @@ $('form').submit(function() {
 });
 
 $(document).ready(function() {
+    document.getElementById("term").placeholder = ((new Date).getMonth() >= 7 ? "h" : "v") + (new Date).getFullYear().toString().substr(2)
     $("input#course").focus();
 });
